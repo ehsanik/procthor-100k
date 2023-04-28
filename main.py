@@ -16,7 +16,7 @@ def load_dataset() -> prior.DatasetDict:
         if not f"procthor100k_balanced_partitionedassets_{split}.jsonl.gz" in os.listdir('./'):
                 url = f"https://prior-datasets.s3.us-east-2.amazonaws.com/ilearn-dataset/procthor_100k_balanced_{split}.jsonl.gz"
                 urllib.request.urlretrieve(url,'./procthor_100k_balanced_{}.jsonl.gz'.format(split))
-        with gzip.open(f"procthor100k_balanced_partitionedassets_{split}.jsonl.gz", "r") as f:
+        with gzip.open(f"procthor_100k_balanced_{split}.jsonl.gz", "r") as f:
             houses = [line for line in tqdm(f, total=size, desc=f"Loading {split}")]
         data[split] = LazyJsonDataset(
             data=houses, dataset="procthor-100k", split=split
